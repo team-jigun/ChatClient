@@ -45,11 +45,10 @@ namespace ChatClient
             }
 
             SignUpModel model = new SignUpModel(id, password, username);
-            RestClient client = new RestClient();
             RestRequest request = new RestRequest("http://localhost:3000/signUp", Method.Post);
             request.AddBody(model);
 
-            RestResponse<ResponseModel<JsonObject>> response = client.Execute<ResponseModel<JsonObject>>(request);
+            var response = App.Client.Execute<ResponseModel<JsonObject>>(request);
 
             if (response.IsSuccessStatusCode && response.Data?.Options != null)
             {
