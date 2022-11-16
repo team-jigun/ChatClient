@@ -15,15 +15,17 @@ using System.Windows.Shapes;
 
 namespace ChatClient
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window
-    {
+	/// <summary>
+	/// Interaction logic for MainWindow.xaml
+	/// </summary>
+	public partial class MainWindow : Window
+	{
 
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-    }
+		public MainWindow()
+		{
+			InitializeComponent();
+			App.PageFrame = PageFrame;
+			PageFrame.Navigate(new LoginPage());
+		}
+	}
 }
