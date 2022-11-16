@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using RestSharp;
 
 namespace ChatClient
 {
@@ -27,12 +29,30 @@ namespace ChatClient
 
         private void RegisterBtnClick(object sender, RoutedEventArgs e)
         {
-
+            App.PageFrame.Navigate(new RegisterPage());
         }
 
         private void LoginBtnClick(object sender, RoutedEventArgs e)
         {
+            string id = IDTextBox.Text;
+            string password = PasswordTextBox.Password;
 
+            SignInModel model = new SignInModel(id, password);
+            RestClient client = new RestClient();
+            RestRequest request = new RestRequest("http://localhost:3000/signIn", Method.Post);
+            request.AddBody(model);
+
+            var response = client.Execute<ResponseModel<AccessTokenModel>>(request);
+
+            if (response.IsSuccessStatusCode && response.Data?.Options != null)
+            {
+                App.AccessToken = response.Data!.Options;
+                App.PageFrame.Navigate(new ChatPage());
+            }
+            else
+            {
+                MessageBox.Show(response.Data?.Message ?? "Unknown Error");
+            }
         }
     }
 }

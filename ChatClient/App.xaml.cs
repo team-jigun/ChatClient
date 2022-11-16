@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ChatClient
 {
@@ -13,5 +14,7 @@ namespace ChatClient
     /// </summary>
     public partial class App : Application
     {
+        public static Frame PageFrame { get; set; }
+        public static AccessTokenModel? AccessToken { get; set; }
     }
 }

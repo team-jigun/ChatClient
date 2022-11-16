@@ -24,6 +24,13 @@ namespace ChatClient
         public MainWindow()
         {
             InitializeComponent();
+            App.PageFrame = PageFrame;
+            PageFrame.Navigate(new LoginPage());
+        }
+
+        private void PageFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+
         }
     }
 }
