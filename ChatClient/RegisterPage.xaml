@@ -24,7 +24,11 @@
             <Label Content="비밀번호"></Label>
             <PasswordBox x:Name="PasswordTextBox"/>
             <Grid Height="12"></Grid>
-            <Label Content="비밀번호"></Label>
+<<<<<<< HEAD
+            <Label Content="비밀번호 확인"></Label>
+=======
+            <Label Content="비밀번호 확인"></Label>   <!-- 숙제 -->
+>>>>>>> 6a1d140258e665c9376aafc4701a303190fcaa02
             <PasswordBox x:Name="PasswordConfirmTextBox"/>
             <Grid Height="24"></Grid>
             <Grid>
