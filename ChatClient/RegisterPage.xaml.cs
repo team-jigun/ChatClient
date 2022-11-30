@@ -47,7 +47,7 @@ namespace ChatClient
             }
 
             SignupModel model = new SignupModel(id, password, username);
-            RestRequest request = new RestRequest("http://localhost:3000/signUp", Method.Post);
+            RestRequest request = new RestRequest("http://localhost:3000/user/signUp", Method.Post);
             request.AddBody(model);
 
             var response = App.Client.Execute<ResponseModel<JsonObject>>(request);
