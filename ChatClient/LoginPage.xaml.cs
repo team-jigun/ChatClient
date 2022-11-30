@@ -38,11 +38,10 @@ namespace ChatClient
             string password = PasswordTextBox.Password;
 
             LoginModel model = new LoginModel(id, password);
-            RestClient client = new RestClient();
-            RestRequest request = new RestRequest("http://localhost:3000/signIn", Method.Post);
+            RestRequest request = new RestRequest("http://localhost:3000/user/signIn", Method.Post);
             request.AddBody(model);
-            
-            var response = client.Execute<ResponseModel<AccessTokenModel>>(request);
+
+            var response = App.client.Execute<ResponseModel<AccessTokenModel>>(request);
 
             if (response.IsSuccessStatusCode && response.Data?.Options != null)
             {

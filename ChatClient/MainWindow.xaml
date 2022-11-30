@@ -13,9 +13,9 @@
         TextOptions.TextRenderingMode="Auto"        
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
-        Title="MainWindow" Height="450" Width="800" MinWidth="300" MinHeight="500">
+        Title="MainWindow" Height="450" Width="800" MinWidth="300" MinHeight="500" WindowStyle="None">
     <Grid>
         <md:Snackbar VerticalAlignment="Top"></md:Snackbar>
-        <Frame x:Name="PageFrame"></Frame>
+        <Frame x:Name="PageFrame" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
 </Window>

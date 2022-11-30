@@ -41,17 +41,17 @@ namespace ChatClient
             string password = PasswordTextBox.Password;
             string passwordConfirm = PasswordConfirmTextBox.Password;
 
+
             if (password != passwordConfirm)
             {
                 MessageBox.Show("비밀번호랑 비밀번호 확인이 달라요!");
             }
-
+            // TODO: 서버에 회원가입 요청 보내기
             SignupModel model = new SignupModel(id, password, username);
-            RestClient client = new RestClient();
-            RestRequest request = new RestRequest("http://localhost:3000/signUp", Method.Post);
+            RestRequest request = new RestRequest("http://localhost:3000/user/signUp", Method.Post);
             request.AddBody(model);
 
-            var response = client.Execute<ResponseModel<JsonObject>>(request);
+            var response = App.client.Execute<ResponseModel<JsonObject>>(request);
 
             if (response.IsSuccessStatusCode && response.Data?.Options != null)
             {
