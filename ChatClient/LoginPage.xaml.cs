@@ -38,20 +38,20 @@ namespace ChatClient
             string password = PasswordTextBox.Password;
 
             LoginModel model = new LoginModel(id, password);
-            RestClient client = new RestClient();
+            
             RestRequest request = new RestRequest("http://localhost:3000/signIn", Method.Post);
             request.AddBody(model);
             
-            var response = client.Execute<ResponseModel<AccessTokenModel>>(request);
+            var response = App.client.Execute<ResponseModel<AccessTokenModel>>(request);
 
-            if (response.IsSuccessStatusCode && response.Data?.Options != null)
+            if (response.IsSuccessStatusCode && response.Data?.options != null)
             {
-                App.AccessToken = response.Data.Options;
+                App.AccessToken = response.Data.options;
                 App.PageFrame.Navigate(new ChatPage());
             }
             else
             { 
-                MessageBox.Show(response.Data?.Message ?? "Unknown error");
+                MessageBox.Show(response.Data?.message ?? "Unknown error");
             }
         }
     }

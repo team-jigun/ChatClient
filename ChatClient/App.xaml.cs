@@ -1,4 +1,5 @@
 ﻿using ChatClient.Models;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -17,5 +18,7 @@ namespace ChatClient
     {
         public static Frame PageFrame { get; set; }
         public static AccessTokenModel? AccessToken { get; set; }
+
+        public static RestClient client = new RestClient();
     }
 }
