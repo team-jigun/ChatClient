@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChatClient.Models;
+using RestSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,12 +29,29 @@ namespace ChatClient
 
         private void RegisterBtnClick(object sender, RoutedEventArgs e)
         {
-
+            App.PageFrame.Navigate(new RegisterPage());
         }
 
         private void LoginBtnClick(object sender, RoutedEventArgs e)
         {
+            string id = IDTextBox.Text;
+            string password = PasswordTextBox.Password;
 
+            LoginModel model = new LoginModel(id, password);
+            RestRequest request = new RestRequest("http://localhost:3000/user/signIn", Method.Post);
+            request.AddBody(model);
+
+            var response = App.client.Execute<ResponseModel<AccessTokenModel>>(request);
+
+            if (response.IsSuccessStatusCode && response.Data?.Options != null)
+            {
+                App.AccessToken = response.Data.Options;
+                App.PageFrame.Navigate(new ChatPage());
+            }
+            else
+            { 
+                MessageBox.Show(response.Data?.Message ?? "Unknown error");
+            }
         }
     }
 }

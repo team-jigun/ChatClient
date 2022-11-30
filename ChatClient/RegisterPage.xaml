@@ -24,7 +24,7 @@
             <Label Content="비밀번호"></Label>
             <PasswordBox x:Name="PasswordTextBox"/>
             <Grid Height="12"></Grid>
-            <Label Content="비밀번호"></Label>
+            <Label Content="비밀번호 확인"></Label>   <!-- 숙제 -->
             <PasswordBox x:Name="PasswordConfirmTextBox"/>
             <Grid Height="24"></Grid>
             <Grid>
