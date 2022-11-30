@@ -34,7 +34,24 @@ namespace ChatClient
 
         private void LoginBtnClick(object sender, RoutedEventArgs e)
         {
+            string id = IDTextBox.Text;
+            string password = PasswordTextBox.Password;
 
+            LoginModel model = new LoginModel(id, password);
+            RestRequest request = new RestRequest("http://localhost:3000/user/signIn", Method.Post);
+            request.AddBody(model);
+
+            var response = App.client.Execute<ResponseModel<AccessTokenModel>>(request);
+
+            if (response.IsSuccessStatusCode && response.Data?.Options != null)
+            {
+                App.AccessToken = response.Data.Options;
+                App.PageFrame.Navigate(new ChatPage());
+            }
+            else
+            { 
+                MessageBox.Show(response.Data?.Message ?? "Unknown error");
+            }
         }
     }
 }
