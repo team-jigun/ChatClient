@@ -40,7 +40,7 @@ namespace ChatClient
             string password = PasswordTextBox.Password;
 
             SignInModel model = new SignInModel(id, password);
-            RestRequest request = new RestRequest("http://localhost:3000/signIn", Method.Post);
+            RestRequest request = new RestRequest("http://localhost:3000/user/signIn", Method.Post);
             request.AddBody(model);
 
             var response = App.Client.Execute<ResponseModel<AccessTokenModel>>(request);
