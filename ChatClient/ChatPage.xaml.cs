@@ -43,7 +43,6 @@ namespace ChatClient
         {
             InitializeComponent();
             DataContext = this;
-            App.ConnectSocketIO();
         }
 
         private void JoinRoomBtnClick(object sender, RoutedEventArgs e)

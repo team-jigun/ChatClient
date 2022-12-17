@@ -21,7 +21,7 @@ namespace ChatClient
         public static Frame PageFrame { get; set; }
         public static AccessTokenModel? AccessToken { get; set; }
         public readonly static RestClient Client = new RestClient();
-        public static SocketIO SocketClient { get; set; }
+        public static SocketIO SocketClient = new SocketIO("http://localhost:3001");
 
         public static AccessTokenModel? RefreshTokenModel()
         {
@@ -43,7 +43,6 @@ namespace ChatClient
 
         public static void ConnectSocketIO()
         {
-            SocketClient = new SocketIO("http://localhost:3001");
             Dictionary<string, string> headers = new Dictionary<string, string>();
             headers.Add("authorization", "Bearer " + AccessToken.Token);
             headers.Add("refresh", AccessToken.RefreshToken);
